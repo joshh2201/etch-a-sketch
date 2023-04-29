@@ -1,17 +1,30 @@
 body {
-  margin: 100px;
+  margin: 0px;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
 .container {
-  width: 100%;
-  height: 100%;
+  margin: 150px 100px;
+  padding: 0px;
+  height: auto;
   flex: 1;
   display: flex;
   flex-direction: column;
-  background-color: blue;
+}
+
+.row {
+  margin: 0px;
+  padding: 0px;
+  display: flex;
+  flex: 1;
+  border-style: solid;
+}
+
+.col {
+  flex: 1 1 auto;
+  border-style: solid;
+  background-color: white;
+  aspect-ratio: 1/1;
 }
