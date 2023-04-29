@@ -11,6 +11,17 @@ function initializeGrid() {
 
     container.appendChild(row);
   }
+  addHover();
 }
 
+function changeColour() {
+  this.style.background = 'black';
+}
+
+function addHover() {
+  const squares = document.querySelectorAll('.col');
+  squares.forEach((square) =>
+    square.addEventListener('mouseover', changeColour)
+  );
+}
 initializeGrid();
