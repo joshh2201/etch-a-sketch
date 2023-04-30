@@ -23,12 +23,17 @@ function changeColour(e) {
   this.style.background = rgbStr;
 }
 
-function addHover(isRainbow = false) {
+function addHover(isRainbow = false, isShade = false) {
   const squares = document.querySelectorAll('.col');
+  let colorCallback = changeColour;
+  if (isShade) {
+    colorCallback = shadeSquares;
+  }
   squares.forEach((square) => {
     square.removeEventListener('mouseover', changeColour);
+    square.removeEventListener('mouseover', shadeSquares);
     square.rainbow = isRainbow;
-    square.addEventListener('mouseover', changeColour);
+    square.addEventListener('mouseover', colorCallback);
   });
 }
 
@@ -36,7 +41,8 @@ function randomRGB() {
   return Math.floor(Math.random() * 256);
 }
 
-function multiColor() {
+function colorCallback() {
+  resetGrid();
   addHover(true);
 }
 
@@ -59,14 +65,38 @@ function resetGrid() {
   squares.forEach((square) => {
     square.style.background = 'white';
   });
+  addHover();
+}
+
+function shadeSquares() {
+  let background = this.style.background;
+  if (background === 'white') {
+    this.style.background = 'rgba(0,0,0,0.1)';
+  } else {
+    console.log(background);
+    let rgb = background.match(/[.?\d]+/g);
+    console.log(rgb[rgb.length - 1]);
+    let alpha = parseFloat(rgb[rgb.length - 1]);
+    if (alpha) {
+      this.style.background = `rgba(0,0,0,${alpha + 0.1})`;
+    }
+  }
+}
+
+function shadeCallback() {
+  resetGrid();
+  addHover(false, true);
 }
 
 initializeGrid();
 const rainbowBtn = document.querySelector('.rainbow');
-rainbowBtn.addEventListener('click', multiColor);
+rainbowBtn.addEventListener('click', colorCallback);
 
 const gridBtn = document.querySelector('.change-grid');
 gridBtn.addEventListener('click', changeGrid);
 
 const resetBtn = document.querySelector('.reset');
 resetBtn.addEventListener('click', resetGrid);
+
+const shadeBtn = document.querySelector('.shading');
+shadeBtn.addEventListener('click', shadeCallback);
