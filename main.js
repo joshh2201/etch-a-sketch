@@ -54,9 +54,19 @@ function changeGrid() {
   initializeGrid(newSize);
 }
 
+function resetGrid() {
+  const squares = document.querySelectorAll('.col');
+  squares.forEach((square) => {
+    square.style.background = 'white';
+  });
+}
+
 initializeGrid();
 const rainbowBtn = document.querySelector('.rainbow');
 rainbowBtn.addEventListener('click', multiColor);
 
 const gridBtn = document.querySelector('.change-grid');
 gridBtn.addEventListener('click', changeGrid);
+
+const resetBtn = document.querySelector('.reset');
+resetBtn.addEventListener('click', resetGrid);
