@@ -1,17 +1,23 @@
-body {
+body,
+html {
+  height: 100%;
   margin: 0px;
-  min-height: 100vh;
+}
+
+body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  font-family: 'Helvetica', sans-serif;
 }
 
 .container {
-  height: auto;
+  height: 75%;
   aspect-ratio: 1/1;
-  width: 50%;
   display: flex;
   flex-direction: column;
+  border-style: solid;
 }
 
 .row {
@@ -24,5 +30,24 @@ body {
 .col {
   flex: 1 1 auto;
   height: auto;
-  border-style: solid;
+}
+
+.header {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 36px;
+}
+
+button {
+  padding: 8px 18px;
+  background-color: white;
+  font-family: 'Helvetica', sans-serif;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.actions {
+  margin-bottom: 25px;
+  display: flex;
+  gap: 15px;
 }
